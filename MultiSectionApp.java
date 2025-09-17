@@ -45,11 +45,22 @@ public class MultiSectionApp extends JFrame {
 
         JPanel habitSection = new JPanel();
         habitSection.setBackground(Color.black);
-        JLabel habitLabel = new JLabel("This is the Habit Section.", SwingConstants.CENTER);
-        habitLabel.setForeground(Color.white);
-        habitLabel.setFont(defaultFont.deriveFont(Font.BOLD, 24f));
         habitSection.setLayout(new BorderLayout());
-        habitSection.add(habitLabel, BorderLayout.CENTER);
+        JLabel habit_desc = new JLabel();
+        habit_desc.setText("sadfghjkl");
+        habit_desc.setForeground(Color.white);
+        habit_desc.setFont(defaultFont.deriveFont(Font.PLAIN, 14f));
+        habit_desc.setHorizontalAlignment(SwingConstants.LEFT);
+        habitSection.add(habit_desc, BorderLayout.NORTH);
+        Point p = habit_desc.getLocation();
+        JButton habit_add = new JButton();
+        habit_add.setLocation(p.x , p.y - 16);
+        habit_add.setText("add habit");
+        habit_add.setFont(defaultFont.deriveFont(Font.BOLD, 24f));
+        habit_add.setForeground(Color.white);
+        habit_add.setBackground(Color.black);
+        habit_add.setSize(20, 20);
+        habitSection.add(habit_add);
         
         JPanel aboutSection = new JPanel();
         aboutSection.setBackground(Color.black);
