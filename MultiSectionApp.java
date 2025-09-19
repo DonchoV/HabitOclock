@@ -16,7 +16,7 @@ public class MultiSectionApp extends JFrame {
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setResizable(true);
+        setResizable(false);
 
         // Load custom font (fallback if fails)
         Font defaultFont;
@@ -54,7 +54,8 @@ public class MultiSectionApp extends JFrame {
         habitSection.add(habit_desc, BorderLayout.NORTH);
         Point p = habit_desc.getLocation();
         JButton habit_add = new JButton();
-        habit_add.setLocation(p.x , p.y - 16);
+        habit_add.setHorizontalAlignment(SwingConstants.LEFT);
+        // habit_add.setLocation(p.x , p.y - 16);
         habit_add.setText("add habit");
         habit_add.setFont(defaultFont.deriveFont(Font.BOLD, 24f));
         habit_add.setForeground(Color.white);
@@ -144,6 +145,7 @@ public class MultiSectionApp extends JFrame {
     }
 
     // ---------------- Pomodoro Section ----------------
+    @SuppressWarnings("unused")
     private JPanel createPomodoroSection(Font font) {
     JPanel panel = new JPanel(new BorderLayout());
     panel.setBackground(Color.black);
