@@ -95,6 +95,7 @@ public class MultiSectionApp extends JFrame {
     }
 
     // ---------------- Home Section ----------------
+    @SuppressWarnings("unused")
     private JPanel createHomeSection(Font font) {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBackground(Color.black);
@@ -266,6 +267,7 @@ public class MultiSectionApp extends JFrame {
     }
 
     // ---------------- Load/Save Habits ----------------
+    @SuppressWarnings("CallToPrintStackTrace")
     private void loadHabits() {
         if (!habitFile.exists()) return;
 
@@ -284,6 +286,7 @@ public class MultiSectionApp extends JFrame {
         }
     }
 
+    @SuppressWarnings("CallToPrintStackTrace")
     private void saveHabits() {
         List<String> habits = new ArrayList<>();
         for (Component row : habitList.getComponents()) {
@@ -456,5 +459,9 @@ public class MultiSectionApp extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(MultiSectionApp::new);
+    }
+
+    public File getHabitFile() {
+        return habitFile;
     }
 }
