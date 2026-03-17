@@ -9,9 +9,9 @@ import java.util.List;
 import javax.swing.*;
 
 public class MultiSectionApp extends JFrame {
-    private CardLayout cardLayout;
-    private JPanel mainPanel;
-    private JLabel clockLabel;
+    private final CardLayout cardLayout;
+    private final JPanel mainPanel;
+    private     JLabel clockLabel;
 
     private JPanel habitList;
     private final File habitFile = new File("habits.txt");
@@ -23,8 +23,6 @@ public class MultiSectionApp extends JFrame {
     private final java.util.Map<String, LocalDate> lastCompletedMap = new java.util.HashMap<>();
     private LocalDate lastCheckedDate = LocalDate.now();
 
-    // ---------------- Statistics ----------------
-    private JPanel statisticsPanel;
     private JTable statsTable;
 
     public MultiSectionApp() {
@@ -68,22 +66,7 @@ public class MultiSectionApp extends JFrame {
         JPanel navPanel = new JPanel();
         navPanel.setBackground(Color.black);
 
-        JButton homeBtn = new JButton("Home");
-        JButton pomodoroBtn = new JButton("Pomodoro");
-        JButton aboutBtn = new JButton("About");
-        JButton habitBtn = new JButton("Habit");
-        JButton statsBtn = new JButton("Statistics");
-
-        homeBtn.addActionListener(e -> cardLayout.show(mainPanel, "Home"));
-        pomodoroBtn.addActionListener(e -> cardLayout.show(mainPanel, "Pomodoro"));
-        aboutBtn.addActionListener(e -> cardLayout.show(mainPanel, "About"));
-        habitBtn.addActionListener(e -> cardLayout.show(mainPanel, "Habit Section"));
-        statsBtn.addActionListener(e -> {
-            updateStatisticsTable();
-            cardLayout.show(mainPanel, "Statistics");
-        });
-
-        JButton[] buttons = {homeBtn, pomodoroBtn, aboutBtn, habitBtn, statsBtn};
+        JButton[] buttons = getJButtons();
         for (JButton b : buttons) {
             b.setForeground(Color.white);
             b.setBackground(Color.black);
@@ -106,6 +89,26 @@ public class MultiSectionApp extends JFrame {
         startDailyResetTimer();
 
         setVisible(true);
+    }
+
+    private JButton[] getJButtons() {
+        JButton homeBtn = new JButton("Home");
+        JButton pomodoroBtn = new JButton("Pomodoro");
+        JButton aboutBtn = new JButton("About");
+        JButton habitBtn = new JButton("Habit");
+        JButton statsBtn = new JButton("Statistics");
+
+        homeBtn.addActionListener(e -> cardLayout.show(mainPanel, "Home"));
+        pomodoroBtn.addActionListener(e -> cardLayout.show(mainPanel, "Pomodoro"));
+        aboutBtn.addActionListener(e -> cardLayout.show(mainPanel, "About"));
+        habitBtn.addActionListener(e -> cardLayout.show(mainPanel, "Habit Section"));
+        statsBtn.addActionListener(e -> {
+            updateStatisticsTable();
+            cardLayout.show(mainPanel, "Statistics");
+        });
+
+        JButton[] buttons = {homeBtn, pomodoroBtn, aboutBtn, habitBtn, statsBtn};
+        return buttons;
     }
 
     // ---------------- Home Section ----------------
@@ -626,7 +629,8 @@ public class MultiSectionApp extends JFrame {
 
     // ---------------- Statistics Section ----------------
     private JPanel createStatisticsSection() {
-        statisticsPanel = new JPanel(new BorderLayout());
+        // ---------------- Statistics ----------------
+        JPanel statisticsPanel = new JPanel(new BorderLayout());
         statisticsPanel.setBackground(Color.black);
 
         statsTable = new JTable();
